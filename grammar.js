@@ -97,7 +97,7 @@ export default grammar({
 		)),
 
 		call_expression: $ => prec(10, seq(
-			$.identifier,
+			field('name', $._expression),
 			'(',
 			optional(seq($._expression, repeat(seq(',', $._expression)))),
 			')'
@@ -106,7 +106,7 @@ export default grammar({
 		member_expression: $ => prec(10, seq(
 			$._expression,
 			$.DOT,
-			$.identifier
+			field('member', $.identifier)
 		)),
 
 		assignment_expression: $ => prec.right(seq(
