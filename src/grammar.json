@@ -428,7 +428,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "let"
+              }
+            },
+            "named": false,
             "value": "let"
           },
           {
@@ -453,7 +461,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "const"
+              }
+            },
+            "named": false,
             "value": "const"
           },
           {
@@ -478,7 +494,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "let"
+              }
+            },
+            "named": false,
             "value": "let"
           },
           {
@@ -636,17 +660,25 @@
     },
     "snake_case_identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_][a-zA-Z0-9_]*"
+      "value": "[a-z_][a-z0-9_]*"
     },
     "camel_case_identifier": {
       "type": "PATTERN",
-      "value": "[A-Z][a-zA-Z0-9_]*"
+      "value": "[A-Z_][a-zA-Z0-9_]*"
     },
     "explicit_scope": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "@"
+            }
+          },
+          "named": false,
           "value": "@"
         },
         {
@@ -692,8 +724,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "=>"
+          "type": "SYMBOL",
+          "name": "ARROW"
         },
         {
           "type": "PREC_RIGHT",
@@ -704,6 +736,13 @@
           }
         }
       ]
+    },
+    "ARROW": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "=>"
+      }
     },
     "list_expression": {
       "type": "SEQ",
@@ -937,7 +976,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "fn"
+              }
+            },
+            "named": false,
             "value": "fn"
           },
           {
@@ -1012,7 +1059,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "fn"
+            }
+          },
+          "named": false,
           "value": "fn"
         },
         {
@@ -1048,7 +1103,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "return"
+              }
+            },
+            "named": false,
             "value": "return"
           },
           {
@@ -1073,7 +1136,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "out"
+              }
+            },
+            "named": false,
             "value": "out"
           },
           {
@@ -1098,7 +1169,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "break"
+              }
+            },
+            "named": false,
             "value": "break"
           },
           {
@@ -1117,8 +1196,20 @@
       }
     },
     "continue_statement": {
-      "type": "STRING",
-      "value": "continue"
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "ALIAS",
+        "content": {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "continue"
+          }
+        },
+        "named": false,
+        "value": "continue"
+      }
     },
     "if_statement": {
       "type": "PREC_RIGHT",
@@ -1127,7 +1218,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "if"
+              }
+            },
+            "named": false,
             "value": "if"
           },
           {
@@ -1160,7 +1259,15 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "TOKEN",
+                      "content": {
+                        "type": "STRING",
+                        "value": "else"
+                      }
+                    },
+                    "named": false,
                     "value": "else"
                   },
                   {
@@ -1184,11 +1291,27 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "else"
+                }
+              },
+              "named": false,
               "value": "else"
             },
             {
-              "type": "STRING",
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "if"
+                }
+              },
+              "named": false,
               "value": "if"
             }
           ]
@@ -1207,7 +1330,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "switch"
+            }
+          },
+          "named": false,
           "value": "switch"
         },
         {
@@ -1273,7 +1404,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "loop"
+            }
+          },
+          "named": false,
           "value": "loop"
         },
         {
@@ -1286,7 +1425,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "while"
+            }
+          },
+          "named": false,
           "value": "while"
         },
         {
@@ -1303,7 +1450,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "for"
+            }
+          },
+          "named": false,
           "value": "for"
         },
         {
@@ -1311,7 +1466,15 @@
           "name": "identifier"
         },
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "in"
+            }
+          },
+          "named": false,
           "value": "in"
         },
         {
@@ -1357,7 +1520,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "class"
+            }
+          },
+          "named": false,
           "value": "class"
         },
         {
@@ -1394,7 +1565,15 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "STRING",
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "TOKEN",
+                        "content": {
+                          "type": "STRING",
+                          "value": "constructor"
+                        }
+                      },
+                      "named": false,
                       "value": "constructor"
                     },
                     {
@@ -1464,7 +1643,15 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "@"
+                }
+              },
+              "named": false,
               "value": "@"
             },
             {
@@ -1477,7 +1664,15 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "@"
+                }
+              },
+              "named": false,
               "value": "@"
             },
             {
@@ -1498,7 +1693,15 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "@"
+                }
+              },
+              "named": false,
               "value": "@"
             },
             {
@@ -1550,7 +1753,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "using"
+            }
+          },
+          "named": false,
           "value": "using"
         },
         {
@@ -1665,7 +1876,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
+            "type": "ALIAS",
+            "content": {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "namespace"
+              }
+            },
+            "named": false,
             "value": "namespace"
           },
           {
@@ -1683,7 +1902,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "namespace"
+            }
+          },
+          "named": false,
           "value": "namespace"
         },
         {
@@ -1696,7 +1923,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "$"
+            }
+          },
+          "named": false,
           "value": "$"
         },
         {

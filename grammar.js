@@ -248,7 +248,7 @@ export default grammar({
 			optional($._expression)
 		)),
 
-		continue_statement: $ => word('continue'),
+		continue_statement: $ => prec(2, word('continue')),
 
 		// IF STATEMENT
 

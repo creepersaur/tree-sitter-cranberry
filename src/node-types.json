@@ -1,5 +1,10 @@
 [
   {
+    "type": "ARROW",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "any_block",
     "named": true,
     "fields": {},
@@ -851,6 +856,11 @@
     }
   },
   {
+    "type": "continue_statement",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "decorator_statement",
     "named": true,
     "fields": {},
@@ -1614,9 +1624,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "ARROW",
+          "named": true
+        },
         {
           "type": "block_scoped_namespace_definition",
           "named": true
@@ -3293,8 +3307,8 @@
     "named": false
   },
   {
-    "type": "continue_statement",
-    "named": true
+    "type": "continue",
+    "named": false
   },
   {
     "type": "else",
