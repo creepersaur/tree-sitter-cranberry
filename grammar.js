@@ -152,9 +152,10 @@ export default grammar({
 
 		inline_block: $ => seq(
 			$.ARROW,
-			prec.right(
-				$._single_line_statement
-			)
+			prec.right(choice(
+				$._single_line_statement,
+				$._expression
+			))
 		),
 
 		ARROW: _ => token('=>'),

@@ -689,11 +689,11 @@
     },
     "all_caps_identifier": {
       "type": "PATTERN",
-      "value": "[A-Z_][A-Z0-9_]*"
+      "value": "[A-Z_][A-Z0-9_]+"
     },
     "camel_case_identifier": {
       "type": "PATTERN",
-      "value": "[A-Z_][a-zA-Z0-9_]*"
+      "value": "[A-Z_][a-zA-Z0-9_]+"
     },
     "explicit_scope": {
       "type": "SEQ",
@@ -760,8 +760,17 @@
           "type": "PREC_RIGHT",
           "value": 0,
           "content": {
-            "type": "SYMBOL",
-            "name": "_single_line_statement"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_single_line_statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            ]
           }
         }
       ]
