@@ -97,7 +97,7 @@ export default grammar({
 		)),
 
 		call_expression: $ => prec(10, seq(
-			$._expression,
+			$.identifier,
 			'(',
 			optional(seq($._expression, repeat(seq(',', $._expression)))),
 			')'
