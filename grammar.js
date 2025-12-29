@@ -335,7 +335,7 @@ export default grammar({
 					)),
 
 					seq(
-						word('constructor'),
+						prec(2, word('constructor')),
 						'(',
 						$.parameter_list,
 						')',
