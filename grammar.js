@@ -332,7 +332,7 @@ export default grammar({
 				$.function_declaration,
 				$.let_expression,
 				seq(
-					$.constructor,
+					word("constructor"),
 					'(',
 					$.parameter_list,
 					')',
