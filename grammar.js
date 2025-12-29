@@ -56,6 +56,7 @@ export default grammar({
 			$.boolean,
 			$.self,
 			$.nil,
+			$.print,
 			$.identifier,
 		),
 
@@ -97,7 +98,7 @@ export default grammar({
 		)),
 
 		call_expression: $ => prec(10, seq(
-			field('name', $.identifier),
+			field('name', choice($.identifier, $.print)),
 			'(',
 			optional(seq($._expression, repeat(seq(',', $._expression)))),
 			')'
@@ -424,6 +425,7 @@ export default grammar({
 		number: $ => /\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?/,
 		boolean: $ => choice('true', 'false'),
 		self: $ => word('self'),
+		print: $ => choice('print', 'println'),
 		nil: $ => word('nil'),
 	},
 });
