@@ -328,17 +328,31 @@ export default grammar({
 			$.camel_case_identifier,
 			'{',
 
-			repeat(choice(
-				$.function_declaration,
-				$.let_expression,
+			choice(
 				seq(
-					word("constructor"),
-					'(',
-					$.parameter_list,
-					')',
-					$.any_block
+					repeat(choice(
+						$.function_declaration,
+						$.let_expression,
+					)),
+
+					seq(
+						word("constructor"),
+						'(',
+						optional($.parameter_list),
+						')',
+						$.any_block
+					),
+
+					repeat(choice(
+						$.function_declaration,
+						$.let_expression,
+					)),
 				),
-			)),
+				repeat(choice(
+					$.function_declaration,
+					$.let_expression,
+				)),
+			),
 
 			'}'
 		),
@@ -411,6 +425,6 @@ export default grammar({
 
 // helper: create a token alias for a keyword
 function word(keyword) {
-	// case-sensitive exact-token alias
-	return alias(token(keyword), keyword);
+  // case-sensitive exact-token alias
+  return alias(token(keyword), keyword);
 }
