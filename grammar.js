@@ -246,7 +246,7 @@ export default grammar({
 			optional($._expression)
 		)),
 
-		continue_statement: $ => word('continue'),
+		continue_statement: $ => seq(word('continue')),
 
 		// IF STATEMENT
 
