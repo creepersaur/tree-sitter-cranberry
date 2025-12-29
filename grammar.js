@@ -148,11 +148,13 @@ export default grammar({
 		),
 
 		inline_block: $ => seq(
-			word('=>'),
+			$.ARROW,
 			prec.right(
 				$._single_line_statement
 			)
 		),
+
+		ARROW: _ => token('=>'),
 
 		// LISTS
 
@@ -246,7 +248,7 @@ export default grammar({
 			optional($._expression)
 		)),
 
-		continue_statement: $ => seq(word('continue')),
+		continue_statement: $ => word('continue'),
 
 		// IF STATEMENT
 
