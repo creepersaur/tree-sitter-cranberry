@@ -357,7 +357,7 @@ export default grammar({
 			'}'
 		),
 
-		constructor: $ => prec(2, word('constructor')),
+		constructor: $ => prec(2, token('constructor')),
 
 		// DECORATORS
 
