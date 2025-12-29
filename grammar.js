@@ -75,21 +75,21 @@ export default grammar({
 		)),
 
 		let_statement: $ => prec.right(1, seq(
-			'let',
+			word('let'),
 			$.identifier,
 			'=',
 			$._expression
 		)),
 
 		const_statement: $ => prec.right(1, seq(
-			'const',
+			word('const'),
 			$.identifier,
 			'=',
 			$._expression
 		)),
 
 		let_expression: $ => prec.right(0, seq(
-			'let',
+			word('let'),
 			$.identifier,
 			'=',
 			$._expression
@@ -127,13 +127,13 @@ export default grammar({
 			$.snake_case_identifier,
 			$.camel_case_identifier
 		),
-		snake_case_identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
-		camel_case_identifier: $ => /[A-Z][a-zA-Z0-9_]*/,
+		snake_case_identifier: $ => /[a-z_][a-z0-9_]*/,
+		camel_case_identifier: $ => /[A-Z_][a-zA-Z0-9_]*/,
 
 		// SCOPED-STATEMENTS
 
 		explicit_scope: $ => seq(
-			'@',
+			word('@'),
 			$.block
 		),
 
@@ -148,7 +148,7 @@ export default grammar({
 		),
 
 		inline_block: $ => seq(
-			'=>',
+			word('=>'),
 			prec.right(
 				$._single_line_statement
 			)
@@ -207,7 +207,7 @@ export default grammar({
 		// FUNCTIONS
 
 		function_declaration: $ => prec(2, seq(
-			'fn',
+			word('fn'),
 			$.snake_case_identifier,
 			'(',
 			optional($.parameter_list),
@@ -222,7 +222,7 @@ export default grammar({
 		),
 
 		lambda_declaration: $ => seq(
-			'fn',
+			word('fn'),
 			'(',
 			optional($.parameter_list),
 			')',
@@ -232,26 +232,26 @@ export default grammar({
 		// RETURN / OUT / BREAK
 
 		return_statement: $ => prec.right(seq(
-			'return',
+			word('return'),
 			optional($._expression)
 		)),
 
 		out_statement: $ => prec.right(seq(
-			'out',
+			word('out'),
 			optional($._expression)
 		)),
 
 		break_statement: $ => prec.right(seq(
-			'break',
+			word('break'),
 			optional($._expression)
 		)),
 
-		continue_statement: $ => 'continue',
+		continue_statement: $ => word('continue'),
 
 		// IF STATEMENT
 
 		if_statement: $ => prec.right(seq(
-			'if',
+			word('if'),
 			$._expression,
 			$.any_block,
 			optional(
@@ -264,7 +264,7 @@ export default grammar({
 		)),
 
 		elseif_statement: $ => seq(
-			seq('else', 'if'),
+			seq(word('else'), word('if')),
 			$._expression,
 			$.any_block,
 		),
@@ -272,7 +272,7 @@ export default grammar({
 		// SWITCH STATEMENT
 
 		switch_statement: $ => seq(
-			'switch',
+			word('switch'),
 			$._expression,
 			'{',
 
@@ -289,20 +289,20 @@ export default grammar({
 		// LOOPS
 
 		loop_statement: $ => seq(
-			'loop',
+			word('loop'),
 			$.any_block
 		),
 
 		while_statement: $ => seq(
-			'while',
+			word('while'),
 			$._expression,
 			$.any_block
 		),
 
 		for_statement: $ => seq(
-			'for',
+			word('for'),
 			$.identifier,
-			'in',
+			word('in'),
 			$._expression,
 			$.any_block
 		),
@@ -367,7 +367,7 @@ export default grammar({
 		// NAMESPACES
 
 		using_statement: $ => seq(
-			'using',
+			word('using'),
 			field('path', $.namespace_import)
 		),
 
@@ -392,13 +392,13 @@ export default grammar({
 		),
 
 		block_scoped_namespace_definition: $ => prec(2, seq(
-			'namespace',
+			word('namespace'),
 			$.camel_case_identifier,
 			$.any_block
 		)),
 
 		file_scoped_namespace_definition: $ => seq(
-			'namespace',
+			word('namespace'),
 			$.camel_case_identifier
 		),
 
@@ -418,3 +418,9 @@ export default grammar({
 		nil: $ => 'nil',
 	},
 });
+
+// helper: create a token alias for a keyword
+function word(keyword) {
+  // case-sensitive exact-token alias
+  return alias(token(keyword), keyword);
+}
