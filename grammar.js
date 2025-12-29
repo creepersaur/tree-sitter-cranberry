@@ -54,8 +54,8 @@ export default grammar({
 			$.string,
 			$.number,
 			$.boolean,
-			$.nil,
 			$.self,
+			$.nil,
 			$.identifier,
 		),
 
@@ -420,8 +420,8 @@ export default grammar({
 		),
 		number: $ => /\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?/,
 		boolean: $ => choice('true', 'false'),
-		self: $ => "self",
-		nil: $ => 'nil',
+		self: $ => word('self'),
+		nil: $ => word('nil'),
 	},
 });
 
