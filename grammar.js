@@ -258,7 +258,7 @@ export default grammar({
 				repeat($.elseif_statement)
 			),
 			optional(seq(
-				'else',
+				word('else'),
 				$.any_block
 			))
 		)),
@@ -321,7 +321,7 @@ export default grammar({
 		// CLASSES
 
 		class_definition: $ => seq(
-			'class',
+			word('class'),
 			$.camel_case_identifier,
 			'{',
 
@@ -333,7 +333,7 @@ export default grammar({
 					)),
 
 					seq(
-						'constructor',
+						word('constructor'),
 						'(',
 						$.parameter_list,
 						')',
@@ -357,9 +357,9 @@ export default grammar({
 		// DECORATORS
 
 		decorator_statement: $ => choice(
-			seq('@', $.identifier),               // no parentheses
-			seq('@', $.identifier, '(', ')'),     // empty parentheses
-			seq('@', $.identifier, '(', $.commaSep1, ')')  // with arguments
+			seq(word('@'), $.identifier),               // no parentheses
+			seq(word('@'), $.identifier, '(', ')'),     // empty parentheses
+			seq(word('@'), $.identifier, '(', $.commaSep1, ')')  // with arguments
 		),
 
 		commaSep1: $ => seq($._expression, repeat(seq(',', $._expression))),
@@ -405,7 +405,7 @@ export default grammar({
 		// LITERALS
 
 		formatted_string: $ => seq(
-			'$',
+			word('$'),
 			$.string,
 		),
 		string: $ => choice(
