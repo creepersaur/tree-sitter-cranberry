@@ -104,6 +104,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -208,6 +212,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -366,6 +374,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -505,6 +517,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -541,6 +557,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "print",
             "named": true
           }
         ]
@@ -620,6 +640,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -765,6 +789,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -869,6 +897,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -1008,6 +1040,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -1134,6 +1170,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -1242,6 +1282,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -1383,6 +1427,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -1562,6 +1610,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -1666,6 +1718,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -1824,6 +1880,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -1958,6 +2018,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -2065,6 +2129,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -2169,6 +2237,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -2310,6 +2382,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -2474,6 +2550,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -2596,6 +2676,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -2621,6 +2705,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "print",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "range_expression",
@@ -2704,6 +2793,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -2811,6 +2904,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -2972,6 +3069,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -3147,6 +3248,10 @@
           "named": true
         },
         {
+          "type": "print",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -3259,6 +3364,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -3386,6 +3495,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "print",
           "named": true
         },
         {
@@ -3605,6 +3718,14 @@
   },
   {
     "type": "out",
+    "named": false
+  },
+  {
+    "type": "print",
+    "named": false
+  },
+  {
+    "type": "println",
     "named": false
   },
   {

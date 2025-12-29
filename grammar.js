@@ -425,7 +425,7 @@ export default grammar({
 		number: $ => /\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?/,
 		boolean: $ => choice('true', 'false'),
 		self: $ => word('self'),
-		print: $ => choice('print', 'println'),
+		print: $ => choice(word('print'), word('println')),
 		nil: $ => word('nil'),
 	},
 });

@@ -188,6 +188,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "print"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         }
       ]
@@ -534,8 +538,17 @@
             "type": "FIELD",
             "name": "name",
             "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "print"
+                }
+              ]
             }
           },
           {
@@ -2039,6 +2052,19 @@
       },
       "named": false,
       "value": "self"
+    },
+    "print": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "print"
+        },
+        {
+          "type": "STRING",
+          "value": "println"
+        }
+      ]
     },
     "nil": {
       "type": "ALIAS",
