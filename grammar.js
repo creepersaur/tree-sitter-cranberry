@@ -45,9 +45,9 @@ export default grammar({
 			$.list_expression,
 			$.tuple_expression,
 			$.range_expression,
+			$.member_expression,
 			$.call_expression,
 			$.index_expression,
-			$.member_expression,
 			$.parenthesized_expression,
 			$.binary_expression,
 			$.formatted_string,
@@ -97,16 +97,16 @@ export default grammar({
 		)),
 
 		call_expression: $ => prec(10, seq(
-			field('name', $._expression),
+			field('name', $.identifier),
 			'(',
 			optional(seq($._expression, repeat(seq(',', $._expression)))),
 			')'
 		)),
 
-		member_expression: $ => prec(10, seq(
+		member_expression: $ => prec(5, seq(
 			$._expression,
 			$.DOT,
-			field('member', $.identifier)
+			field('member', choice($.identifier, $.call_expression))
 		)),
 
 		assignment_expression: $ => prec.right(seq(

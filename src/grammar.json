@@ -144,15 +144,15 @@
         },
         {
           "type": "SYMBOL",
+          "name": "member_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "call_expression"
         },
         {
           "type": "SYMBOL",
           "name": "index_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "member_expression"
         },
         {
           "type": "SYMBOL",
@@ -535,7 +535,7 @@
             "name": "name",
             "content": {
               "type": "SYMBOL",
-              "name": "_expression"
+              "name": "identifier"
             }
           },
           {
@@ -584,7 +584,7 @@
     },
     "member_expression": {
       "type": "PREC",
-      "value": 10,
+      "value": 5,
       "content": {
         "type": "SEQ",
         "members": [
@@ -597,8 +597,21 @@
             "name": "DOT"
           },
           {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "FIELD",
+            "name": "member",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "call_expression"
+                }
+              ]
+            }
           }
         ]
       }
