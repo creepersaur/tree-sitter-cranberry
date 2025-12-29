@@ -1459,6 +1459,10 @@
       "required": true,
       "types": [
         {
+          "type": "all_caps_identifier",
+          "named": true
+        },
+        {
           "type": "camel_case_identifier",
           "named": true
         },
@@ -3426,6 +3430,10 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "all_caps_identifier",
+    "named": true
   },
   {
     "type": "break",

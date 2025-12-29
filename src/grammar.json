@@ -675,6 +675,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "all_caps_identifier"
+        },
+        {
+          "type": "SYMBOL",
           "name": "camel_case_identifier"
         }
       ]
@@ -682,6 +686,10 @@
     "snake_case_identifier": {
       "type": "PATTERN",
       "value": "[a-z_][a-z0-9_]*"
+    },
+    "all_caps_identifier": {
+      "type": "PATTERN",
+      "value": "[A-Z_][A-Z0-9_]*"
     },
     "camel_case_identifier": {
       "type": "PATTERN",
