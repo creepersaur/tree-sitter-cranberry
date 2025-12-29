@@ -1,0 +1,41 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "cranberry",
+      "camelcase": "Cranberry",
+      "title": "Cranberry",
+      "scope": "source.cranberry",
+      "file-types": [
+        "cb"
+      ],
+      "injection-regex": "^cranberry$",
+      "class-name": "TreeSitterCranberry"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "A treesitter grammar for Cranberry",
+    "authors": [
+      {
+        "name": "creepersaur",
+        "url": ""
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/creepersaur/tree-sitter-cranberry",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "java": false,
+    "node": true,
+    "python": false,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
+}
