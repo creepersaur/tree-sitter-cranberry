@@ -130,8 +130,8 @@ export default grammar({
 			$.camel_case_identifier,
 		),
 		snake_case_identifier: $ => /[a-z_][a-z0-9_]*/,
-		all_caps_identifier: $ => /[A-Z_][A-Z0-9_]*/,
-		camel_case_identifier: $ => /[A-Z_][a-zA-Z0-9_]*/,
+		all_caps_identifier: $ => /[A-Z_][A-Z0-9_]+/,
+		camel_case_identifier: $ => /[A-Z_][a-zA-Z0-9_]+/,
 
 		// SCOPED-STATEMENTS
 
