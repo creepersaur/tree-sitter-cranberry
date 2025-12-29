@@ -55,6 +55,7 @@ export default grammar({
 			$.number,
 			$.boolean,
 			$.nil,
+			$.self,
 			$.identifier,
 		),
 
@@ -335,7 +336,7 @@ export default grammar({
 					)),
 
 					seq(
-						prec(2, word('constructor')),
+						$.constructor,
 						'(',
 						$.parameter_list,
 						')',
@@ -355,6 +356,8 @@ export default grammar({
 
 			'}'
 		),
+
+		constructor: $ => prec(2, word('constructor')),
 
 		// DECORATORS
 
@@ -417,6 +420,7 @@ export default grammar({
 		),
 		number: $ => /\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?/,
 		boolean: $ => choice('true', 'false'),
+		self: $ => "self",
 		nil: $ => 'nil',
 	},
 });
