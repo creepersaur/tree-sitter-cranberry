@@ -97,7 +97,7 @@ export default grammar({
 		)),
 
 		call_expression: $ => prec(10, seq(
-			field('name', $._expression),
+			field('function', $._expression),
 			'(',
 			optional(seq($._expression, repeat(seq(',', $._expression)))),
 			')'
@@ -427,6 +427,6 @@ export default grammar({
 
 // helper: create a token alias for a keyword
 function word(keyword) {
-  // case-sensitive exact-token alias
-  return alias(token(keyword), keyword);
+	// case-sensitive exact-token alias
+	return alias(token(keyword), keyword);
 }
