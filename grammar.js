@@ -417,31 +417,31 @@ export default grammar({
 			word('$'),
 			choice(
 				seq(
-					'"',
+					word('"'),
 					repeat(choice(
 						$.escape_sequence,
 						$.interpolated_string_content,
 						$.interpolation
 					)),
-					'"'
+					word('"')
 				),
 				seq(
-					"'",
+					word("'"),
 					repeat(choice(
 						$.escape_sequence,
 						$.interpolated_string_content,
 						$.interpolation
 					)),
-					"'"
+					word("'")
 				),
 				seq(
-					'`',
+					word('`'),
 					repeat(choice(
 						$.escape_sequence,
 						$.interpolated_string_content,
 						$.interpolation
 					)),
-					'`'
+					word('`')
 				)
 			)
 		),
