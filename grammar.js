@@ -80,7 +80,7 @@ export default grammar({
 		let_statement: $ => prec.right(1, seq(
 			word('let'),
 			choice(
-				prec(2, seq(
+				prec(5, seq(
 					$.identifier,
 					':',
 					$.builtin_type,
@@ -102,14 +102,16 @@ export default grammar({
 					')'
 				)
 			),
-			'=',
-			$._expression
+			optional(
+				'=',
+				$._expression
+			)
 		)),
 
 		const_statement: $ => prec.right(1, seq(
 			word('const'),
 			choice(
-				prec(2, seq(
+				prec(5, seq(
 					$.identifier,
 					':',
 					$.builtin_type,
@@ -131,8 +133,10 @@ export default grammar({
 					')'
 				)
 			),
-			'=',
-			$._expression
+			optional(
+				'=',
+				$._expression
+			)
 		)),
 
 		let_expression: $ => prec.right(0, seq(
@@ -155,8 +159,10 @@ export default grammar({
 					')'
 				)
 			),
-			'=',
-			$._expression
+			optional(
+				'=',
+				$._expression
+			)
 		)),
 
 		call_expression: $ => prec(10, seq(
