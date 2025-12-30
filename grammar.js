@@ -49,6 +49,7 @@ export default grammar({
 			$.call_expression,
 			$.index_expression,
 			$.ternary_expression,
+			$.null_coalescing_expression,
 			$.parenthesized_expression,
 			$.binary_expression,
 			$.formatted_string,
@@ -68,6 +69,12 @@ export default grammar({
 			'?',
 			$._expression,
 			':',
+			$._expression
+		)),
+
+		null_coalescing_expression: $ => prec.left(2, seq(
+			$._expression,
+			'??',
 			$._expression
 		)),
 

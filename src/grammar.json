@@ -160,6 +160,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "null_coalescing_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "parenthesized_expression"
         },
         {
@@ -229,6 +233,27 @@
           {
             "type": "STRING",
             "value": ":"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        ]
+      }
+    },
+    "null_coalescing_expression": {
+      "type": "PREC_LEFT",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "STRING",
+            "value": "??"
           },
           {
             "type": "SYMBOL",
