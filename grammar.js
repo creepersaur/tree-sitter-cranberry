@@ -79,21 +79,82 @@ export default grammar({
 
 		let_statement: $ => prec.right(1, seq(
 			word('let'),
-			$.identifier,
+			choice(
+				seq(
+					$.identifier,
+					':',
+					$.builtin_type,
+				),
+				seq(
+					$.identifier,
+					repeat(seq(
+						',',
+						$.identifier,
+					))
+				),
+				seq(
+					'(',
+					$.identifier,
+					repeat(seq(
+						',',
+						$.identifier,
+					)),
+					')'
+				)
+			),
 			'=',
 			$._expression
 		)),
 
 		const_statement: $ => prec.right(1, seq(
 			word('const'),
-			$.identifier,
+			choice(
+				seq(
+					$.identifier,
+					':',
+					$.builtin_type,
+				),
+				seq(
+					$.identifier,
+					repeat(seq(
+						',',
+						$.identifier,
+					))
+				),
+				seq(
+					'(',
+					$.identifier,
+					repeat(seq(
+						',',
+						$.identifier,
+					)),
+					')'
+				)
+			),
 			'=',
 			$._expression
 		)),
 
 		let_expression: $ => prec.right(0, seq(
 			word('let'),
-			$.identifier,
+			choice(
+				seq(
+					$.identifier,
+					repeat(seq(
+						',',
+						$.identifier,
+					))
+				),
+				seq(
+					'(',
+					$.identifier,
+					repeat(seq(
+						',',
+						$.identifier,
+					)),
+					')'
+				)
+			),
 			'=',
 			$._expression
 		)),
