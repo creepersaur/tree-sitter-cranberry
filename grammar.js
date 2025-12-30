@@ -48,6 +48,7 @@ export default grammar({
 			$.member_expression,
 			$.call_expression,
 			$.index_expression,
+			$.ternary_expression,
 			$.parenthesized_expression,
 			$.binary_expression,
 			$.formatted_string,
@@ -61,6 +62,14 @@ export default grammar({
 			$.constructor,
 			$.identifier,
 		),
+
+		ternary_expression: $ => prec.right(2, seq(
+			$._expression,
+			'?',
+			$._expression,
+			':',
+			$._expression
+		)),
 
 		parenthesized_expression: $ => prec(1, seq(
 			'(',
