@@ -420,7 +420,7 @@ export default grammar({
 					word('"'),
 					repeat(choice(
 						$.escape_sequence,
-						$.interpolated_string_content,
+						$.interpolated_string_content_double,
 						$.interpolation
 					)),
 					word('"')
@@ -429,7 +429,7 @@ export default grammar({
 					word("'"),
 					repeat(choice(
 						$.escape_sequence,
-						$.interpolated_string_content,
+						$.interpolated_string_content_single,
 						$.interpolation
 					)),
 					word("'")
@@ -438,7 +438,7 @@ export default grammar({
 					word('`'),
 					repeat(choice(
 						$.escape_sequence,
-						$.interpolated_string_content,
+						$.interpolated_string_content_backtick,
 						$.interpolation
 					)),
 					word('`')
@@ -455,23 +455,28 @@ export default grammar({
 		string: $ => choice(
 			seq(
 				'"',
-				repeat(choice($.escape_sequence, $.string_content)),
+				repeat(choice($.escape_sequence, $.string_content_double)),
 				'"'
 			),
 			seq(
 				"'",
-				repeat(choice($.escape_sequence, $.string_content)),
+				repeat(choice($.escape_sequence, $.string_content_single)),
 				"'"
 			),
 			seq(
 				'`',
-				repeat(choice($.escape_sequence, $.string_content)),
+				repeat(choice($.escape_sequence, $.string_content_backtick)),
 				'`'
 			)
 		),
 
-		string_content: _ =>
-			token.immediate(/[^"\\`'\n]+/),
+		string_content_double: _ => token.immediate(/[^"\\\n]+/),
+		string_content_single: _ => token.immediate(/[^'\\\n]+/),
+		string_content_backtick: _ => token.immediate(/[^`\\n]+/),
+
+		interpolated_string_content_double: _ => token.immediate(/[^"\\{\n]+/),
+		interpolated_string_content_single: _ => token.immediate(/[^'\\{\n]+/),
+		interpolated_string_content_backtick: _ => token.immediate(/[^`\\{\n]+/),
 
 		interpolated_string_content: _ =>
 			token.immediate(/[^"\\`'\{\n]+/),
