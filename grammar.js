@@ -98,7 +98,11 @@ export default grammar({
 		)),
 
 		call_expression: $ => prec(10, seq(
-			field('name', choice($.identifier, $.print)),
+			field('name', choice(
+				$.identifier,
+				$.print,
+				$.builtin_type
+			)),
 			'(',
 			optional(seq($._expression, repeat(seq(',', $._expression)))),
 			')'
@@ -488,6 +492,14 @@ export default grammar({
 		boolean: $ => choice('true', 'false'),
 		self: $ => word('self'),
 		print: $ => choice(word('print'), word('println')),
+		builtin_type: $ => choice(
+			word('number'),
+			word('string'),
+			word('bool'),
+			word('list'),
+			word('dict'),
+			word('char')
+		),
 		nil: $ => word('nil'),
 	},
 });
