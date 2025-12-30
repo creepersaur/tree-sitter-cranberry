@@ -415,13 +415,70 @@ export default grammar({
 
 		formatted_string: $ => seq(
 			word('$'),
-			$.string,
+			choice(
+				seq(
+					'"',
+					repeat(choice(
+						$.escape_sequence,
+						$.interpolated_string_content,
+						$.interpolation
+					)),
+					'"'
+				),
+				seq(
+					"'",
+					repeat(choice(
+						$.escape_sequence,
+						$.interpolated_string_content,
+						$.interpolation
+					)),
+					"'"
+				),
+				seq(
+					'`',
+					repeat(choice(
+						$.escape_sequence,
+						$.interpolated_string_content,
+						$.interpolation
+					)),
+					'`'
+				)
+			)
 		),
+
+		interpolation: $ => seq(
+			'{',
+			$._expression,
+			'}'
+		),
+
 		string: $ => choice(
-			/"([^"\\]|\\.)*"?/,
-			/'([^'\\]|\\.)*'?/,
-			/`([^`\\]|\\.)*`?/
+			seq(
+				'"',
+				repeat(choice($.escape_sequence, $.string_content)),
+				'"'
+			),
+			seq(
+				"'",
+				repeat(choice($.escape_sequence, $.string_content)),
+				"'"
+			),
+			seq(
+				'`',
+				repeat(choice($.escape_sequence, $.string_content)),
+				'`'
+			)
 		),
+
+		string_content: _ =>
+			token.immediate(/[^"\\`'\n]+/),
+
+		interpolated_string_content: _ =>
+			token.immediate(/[^"\\`'\{\n]+/),
+
+		escape_sequence: _ =>
+			token.immediate(/\\./),
+
 		number: $ => /\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?/,
 		boolean: $ => choice('true', 'false'),
 		self: $ => word('self'),
@@ -432,6 +489,6 @@ export default grammar({
 
 // helper: create a token alias for a keyword
 function word(keyword) {
-  // case-sensitive exact-token alias
-  return alias(token(keyword), keyword);
+	// case-sensitive exact-token alias
+	return alias(token(keyword), keyword);
 }
