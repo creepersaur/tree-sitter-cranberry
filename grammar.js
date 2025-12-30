@@ -492,14 +492,14 @@ export default grammar({
 		boolean: $ => choice('true', 'false'),
 		self: $ => word('self'),
 		print: $ => choice(word('print'), word('println')),
-		builtin_type: $ => choice(
+		builtin_type: $ => prec(2, choice(
 			word('number'),
 			word('string'),
 			word('bool'),
 			word('list'),
 			word('dict'),
 			word('char')
-		),
+		)),
 		nil: $ => word('nil'),
 	},
 });
