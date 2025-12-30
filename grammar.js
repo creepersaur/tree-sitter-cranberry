@@ -80,11 +80,11 @@ export default grammar({
 		let_statement: $ => prec.right(1, seq(
 			word('let'),
 			choice(
-				seq(
+				prec(2, seq(
 					$.identifier,
 					':',
 					$.builtin_type,
-				),
+				)),
 				seq(
 					$.identifier,
 					repeat(seq(
@@ -109,11 +109,11 @@ export default grammar({
 		const_statement: $ => prec.right(1, seq(
 			word('const'),
 			choice(
-				seq(
+				prec(2, seq(
 					$.identifier,
 					':',
 					$.builtin_type,
-				),
+				)),
 				seq(
 					$.identifier,
 					repeat(seq(
