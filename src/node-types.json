@@ -548,6 +548,11 @@
     }
   },
   {
+    "type": "builtin_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -555,6 +560,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "builtin_type",
+            "named": true
+          },
           {
             "type": "identifier",
             "named": true
@@ -3806,12 +3815,20 @@
     "named": true
   },
   {
+    "type": "bool",
+    "named": false
+  },
+  {
     "type": "break",
     "named": false
   },
   {
     "type": "camel_case_identifier",
     "named": true
+  },
+  {
+    "type": "char",
+    "named": false
   },
   {
     "type": "class",
@@ -3831,6 +3848,10 @@
   },
   {
     "type": "continue",
+    "named": false
+  },
+  {
+    "type": "dict",
     "named": false
   },
   {
@@ -3878,6 +3899,10 @@
     "named": false
   },
   {
+    "type": "list",
+    "named": false
+  },
+  {
     "type": "loop",
     "named": false
   },
@@ -3887,6 +3912,10 @@
   },
   {
     "type": "nil",
+    "named": false
+  },
+  {
+    "type": "number",
     "named": false
   },
   {
@@ -3916,6 +3945,10 @@
   {
     "type": "snake_case_identifier",
     "named": true
+  },
+  {
+    "type": "string",
+    "named": false
   },
   {
     "type": "string_content_backtick",

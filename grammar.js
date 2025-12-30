@@ -99,9 +99,9 @@ export default grammar({
 
 		call_expression: $ => prec(10, seq(
 			field('name', choice(
-				$.identifier,
 				$.print,
-				$.builtin_type
+				$.builtin_type,
+				$.identifier,
 			)),
 			'(',
 			optional(seq($._expression, repeat(seq(',', $._expression)))),
