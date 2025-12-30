@@ -112,10 +112,10 @@ export default grammar({
 					')'
 				)
 			),
-			optional(
+			optional(seq(
 				'=',
 				$._expression
-			)
+			))
 		)),
 
 		const_statement: $ => prec.right(1, seq(
@@ -143,10 +143,10 @@ export default grammar({
 					')'
 				)
 			),
-			optional(
+			optional(seq(
 				'=',
 				$._expression
-			)
+			))
 		)),
 
 		let_expression: $ => prec.right(0, seq(
@@ -169,10 +169,10 @@ export default grammar({
 					')'
 				)
 			),
-			optional(
+			optional(seq(
 				'=',
 				$._expression
-			)
+			))
 		)),
 
 		call_expression: $ => prec(10, seq(
