@@ -58,6 +58,7 @@ export default grammar({
 			$.nil,
 			$.print,
 			$.builtin_type,
+			$.constructor,
 			$.identifier,
 		),
 
