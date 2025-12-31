@@ -60,7 +60,6 @@ export default grammar({
 			$.nil,
 			$.print,
 			$.builtin_type,
-			$.constructor,
 			$.identifier,
 		),
 
@@ -428,13 +427,7 @@ export default grammar({
 						$.let_expression,
 					)),
 
-					seq(
-						$.constructor,
-						'(',
-						optional($.parameter_list),
-						')',
-						$.any_block
-					),
+					$.constructor,
 
 					repeat(choice(
 						$.function_declaration,
@@ -450,7 +443,14 @@ export default grammar({
 			'}'
 		),
 
-		constructor: $ => prec(2, word('constructor')),
+		constructor: $ => seq(
+			$.constructor_word,
+			'(',
+			optional($.parameter_list),
+			')',
+			$.any_block
+		),
+		constructor_word: $ => prec(2, word('constructor')),
 
 		// DECORATORS
 
