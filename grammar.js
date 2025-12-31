@@ -434,7 +434,7 @@ export default grammar({
 
 		class_definition: $ => seq(
 			word('class'),
-			$.camel_case_identifier,
+			field("name", $.camel_case_identifier),
 			'{',
 
 			choice(
