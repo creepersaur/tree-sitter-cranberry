@@ -99,7 +99,10 @@ export default grammar({
 				prec(5, seq(
 					$.identifier,
 					':',
-					$.builtin_type,
+					field('type', choice(
+						$.builtin_type,
+						$.camel_case_identifier
+					)),
 				)),
 				seq(
 					$.identifier,
@@ -120,7 +123,7 @@ export default grammar({
 			),
 			optional(seq(
 				'=',
-				$._expression
+				field('value', $._expression)
 			))
 		)),
 
@@ -130,7 +133,10 @@ export default grammar({
 				prec(5, seq(
 					$.identifier,
 					':',
-					$.builtin_type,
+					field('type', choice(
+						$.builtin_type,
+						$.camel_case_identifier
+					)),
 				)),
 				seq(
 					$.identifier,
@@ -151,7 +157,7 @@ export default grammar({
 			),
 			optional(seq(
 				'=',
-				$._expression
+				field('value', $._expression)
 			))
 		)),
 
@@ -177,7 +183,7 @@ export default grammar({
 			),
 			optional(seq(
 				'=',
-				$._expression
+				field('value', $._expression)
 			))
 		)),
 
@@ -188,26 +194,29 @@ export default grammar({
 				$.identifier,
 			)),
 			'(',
-			optional(seq($._expression, repeat(seq(',', $._expression)))),
+			field('arguments', optional(seq(
+				$._expression,
+				repeat(seq(',', $._expression)))
+			)),
 			')'
 		)),
 
 		member_expression: $ => prec(5, seq(
-			$._expression,
+			field('object', $._expression),
 			$.DOT,
 			field('member', choice($.identifier, $.call_expression))
 		)),
 
 		assignment_expression: $ => prec.right(seq(
-			$._expression,
+			field('left', $._expression),
 			'=',
-			$._expression
+			field('right', $._expression)
 		)),
 
 		index_expression: $ => prec(10, seq(
-			$._expression,
+			field('object', $._expression),
 			'[',
-			$._expression,
+			field('index', $._expression),
 			']'
 		)),
 
@@ -285,10 +294,10 @@ export default grammar({
 					repeat(
 						seq(
 							',',
-							choice(
+							field('pair', choice(
 								$.dictionary_shorthand_entry,
 								$.dictionary_entry
-							)
+							))
 						)),
 					optional(',') // trailing comma
 				)
@@ -296,16 +305,24 @@ export default grammar({
 			'}'
 		)),
 
-		dictionary_shorthand_entry: $ => prec(2, seq($.identifier, '=', $._expression)),
-		dictionary_entry: $ => seq($._expression, ':', $._expression),
+		dictionary_shorthand_entry: $ => prec(2, seq(
+			field('key', $.identifier),
+			'=',
+			field('value', $._expression)
+		)),
+		dictionary_entry: $ => seq(
+			field('key', $._expression),
+			':',
+			field('value', $._expression)
+		),
 
 		// FUNCTIONS
 
 		function_declaration: $ => prec(2, seq(
 			word('fn'),
-			$.snake_case_identifier,
+			field('name', $.snake_case_identifier),
 			'(',
-			optional($.parameter_list),
+			field('parameters', optional($.parameter_list)),
 			')',
 			$.any_block
 		)),
@@ -319,7 +336,7 @@ export default grammar({
 		lambda_declaration: $ => seq(
 			word('fn'),
 			'(',
-			optional($.parameter_list),
+			field('parameters', optional($.parameter_list)),
 			')',
 			$.any_block
 		),
@@ -446,7 +463,7 @@ export default grammar({
 		constructor: $ => seq(
 			$.constructor_word,
 			'(',
-			optional($.parameter_list),
+			field('parameters', optional($.parameter_list)),
 			')',
 			$.any_block
 		),
@@ -455,9 +472,9 @@ export default grammar({
 		// DECORATORS
 
 		decorator_statement: $ => choice(
-			seq(word('@'), $.identifier),               // no parentheses
-			seq(word('@'), $.identifier, '(', ')'),     // empty parentheses
-			seq(word('@'), $.identifier, '(', $.commaSep1, ')')  // with arguments
+			seq(word('@'), field('name', $.identifier)),               // no parentheses
+			seq(word('@'), field('name', $.identifier), '(', ')'),     // empty parentheses
+			seq(word('@'), field('name', $.identifier), '(', field('arguments', $.commaSep1), ')')  // with arguments
 		),
 
 		commaSep1: $ => seq($._expression, repeat(seq(',', $._expression))),
@@ -491,13 +508,13 @@ export default grammar({
 
 		block_scoped_namespace_definition: $ => prec(2, seq(
 			word('namespace'),
-			$.camel_case_identifier,
+			field('name', $.camel_case_identifier),
 			$.any_block
 		)),
 
 		file_scoped_namespace_definition: $ => seq(
 			word('namespace'),
-			$.camel_case_identifier
+			field('name', $.camel_case_identifier)
 		),
 
 		// LITERALS
