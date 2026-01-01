@@ -590,7 +590,8 @@ export default grammar({
 		escape_sequence: _ =>
 			token.immediate(/\\./),
 
-		number: $ => /\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?/,
+		number: $ => /\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?[a-zA-Z_][a-zA-Z0-9_]*/,
+		hex_number: $ => /0[xX][0-9a-fA-F](?:_?[0-9a-fA-F])*/,
 		boolean: $ => choice('true', 'false'),
 		self: $ => word('self'),
 		print: $ => choice(word('print'), word('println')),
