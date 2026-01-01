@@ -2851,8 +2851,21 @@
       }
     },
     "number": {
-      "type": "PATTERN",
-      "value": "\\d(?:_?\\d)*(?:\\.\\d(?:_?\\d)*)?(?:[eE][+-]?\\d(?:_?\\d)*)?(?:[a-zA-Z_][a-zA-Z0-9_]*)"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\d(?:_?\\d)*(?:\\.\\d(?:_?\\d)*)?(?:[eE][+-]?\\d(?:_?\\d)*)?[a-zA-Z_][a-zA-Z0-9_]*"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d(?:_?\\d)*(?:\\.\\d(?:_?\\d)*)?(?:[eE][+-]?\\d(?:_?\\d)*)?"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hex_number"
+        }
+      ]
     },
     "hex_number": {
       "type": "PATTERN",
