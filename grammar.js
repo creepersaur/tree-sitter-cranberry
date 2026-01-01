@@ -324,7 +324,7 @@ export default grammar({
 			'(',
 			field('parameters', optional($.parameter_list)),
 			')',
-			optional($.any_block)
+			field('block', $.any_block)
 		)),
 
 		parameter_list: $ => seq(
@@ -343,17 +343,17 @@ export default grammar({
 
 		// RETURN / OUT / BREAK
 
-		return_statement: $ => prec.right(seq(
+		return_statement: $ => prec.left(5, seq(
 			word('return'),
 			optional($._expression)
 		)),
 
-		out_statement: $ => prec.right(seq(
+		out_statement: $ => prec.left(5, seq(
 			word('out'),
 			optional($._expression)
 		)),
 
-		break_statement: $ => prec.right(seq(
+		break_statement: $ => prec.left(5, seq(
 			word('break'),
 			optional($._expression)
 		)),

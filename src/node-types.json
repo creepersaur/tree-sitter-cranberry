@@ -1973,6 +1973,16 @@
     "type": "function_declaration",
     "named": true,
     "fields": {
+      "block": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "any_block",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1993,16 +2003,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "any_block",
-          "named": true
-        }
-      ]
     }
   },
   {
