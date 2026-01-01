@@ -101,7 +101,7 @@ export default grammar({
 					':',
 					field('type', choice(
 						$.builtin_type,
-						$.camel_case_identifier
+						$.pascal_case_identifier
 					)),
 				)),
 				seq(
@@ -135,7 +135,7 @@ export default grammar({
 					':',
 					field('type', choice(
 						$.builtin_type,
-						$.camel_case_identifier
+						$.pascal_case_identifier
 					)),
 				)),
 				seq(
@@ -223,13 +223,13 @@ export default grammar({
 		comment: $ => /#.*/,
 
 		identifier: $ => choice(
-			$.snake_case_identifier,
-			$.all_caps_identifier,
-			$.camel_case_identifier,
+			prec(3, $.snake_case_identifier),
+			prec(2, $.all_caps_identifier),
+			prec(1, $.pascal_case_identifier),
 		),
 		snake_case_identifier: $ => /[a-z_][a-z0-9_]*/,
 		all_caps_identifier: $ => /[A-Z_][A-Z0-9_]+/,
-		camel_case_identifier: $ => /[A-Z_][a-zA-Z0-9_]+/,
+		pascal_case_identifier: $ => /[A-Z_][a-zA-Z0-9_]+/,
 
 		// SCOPED-STATEMENTS
 
@@ -434,7 +434,7 @@ export default grammar({
 
 		class_definition: $ => seq(
 			word('class'),
-			field("name", $.camel_case_identifier),
+			field("name", $.pascal_case_identifier),
 			'{',
 
 			choice(
@@ -492,29 +492,29 @@ export default grammar({
 		),
 
 		namespace_path: $ => seq(
-			$.camel_case_identifier,
-			repeat(seq('::', $.camel_case_identifier))
+			$.pascal_case_identifier,
+			repeat(seq('::', $.pascal_case_identifier))
 		),
 
 		namespace_group_import: $ => seq(
-			$.camel_case_identifier,
-			repeat(seq('::', $.camel_case_identifier)),
+			$.pascal_case_identifier,
+			repeat(seq('::', $.pascal_case_identifier)),
 			'::',
 			'{',
-			$.camel_case_identifier,
-			repeat(seq(',', $.camel_case_identifier)),
+			$.pascal_case_identifier,
+			repeat(seq(',', $.pascal_case_identifier)),
 			'}'
 		),
 
 		block_scoped_namespace_definition: $ => prec(2, seq(
 			word('namespace'),
-			field('name', $.camel_case_identifier),
+			field('name', $.pascal_case_identifier),
 			$.any_block
 		)),
 
 		file_scoped_namespace_definition: $ => seq(
 			word('namespace'),
-			field('name', $.camel_case_identifier)
+			field('name', $.pascal_case_identifier)
 		),
 
 		// LITERALS

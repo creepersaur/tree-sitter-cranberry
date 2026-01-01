@@ -576,7 +576,7 @@
         "required": true,
         "types": [
           {
-            "type": "camel_case_identifier",
+            "type": "pascal_case_identifier",
             "named": true
           }
         ]
@@ -881,7 +881,7 @@
         "required": true,
         "types": [
           {
-            "type": "camel_case_identifier",
+            "type": "pascal_case_identifier",
             "named": true
           }
         ]
@@ -1052,7 +1052,7 @@
             "named": true
           },
           {
-            "type": "camel_case_identifier",
+            "type": "pascal_case_identifier",
             "named": true
           }
         ]
@@ -1804,7 +1804,7 @@
         "required": true,
         "types": [
           {
-            "type": "camel_case_identifier",
+            "type": "pascal_case_identifier",
             "named": true
           }
         ]
@@ -2018,7 +2018,7 @@
           "named": true
         },
         {
-          "type": "camel_case_identifier",
+          "type": "pascal_case_identifier",
           "named": true
         },
         {
@@ -2886,7 +2886,7 @@
             "named": true
           },
           {
-            "type": "camel_case_identifier",
+            "type": "pascal_case_identifier",
             "named": true
           }
         ]
@@ -3306,7 +3306,7 @@
       "required": true,
       "types": [
         {
-          "type": "camel_case_identifier",
+          "type": "pascal_case_identifier",
           "named": true
         }
       ]
@@ -3340,7 +3340,7 @@
       "required": true,
       "types": [
         {
-          "type": "camel_case_identifier",
+          "type": "pascal_case_identifier",
           "named": true
         }
       ]
@@ -4919,10 +4919,6 @@
     "named": false
   },
   {
-    "type": "camel_case_identifier",
-    "named": true
-  },
-  {
     "type": "char",
     "named": false
   },
@@ -5021,6 +5017,10 @@
   {
     "type": "out",
     "named": false
+  },
+  {
+    "type": "pascal_case_identifier",
+    "named": true
   },
   {
     "type": "print",

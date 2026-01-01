@@ -542,7 +542,7 @@
                           },
                           {
                             "type": "SYMBOL",
-                            "name": "camel_case_identifier"
+                            "name": "pascal_case_identifier"
                           }
                         ]
                       }
@@ -705,7 +705,7 @@
                           },
                           {
                             "type": "SYMBOL",
-                            "name": "camel_case_identifier"
+                            "name": "pascal_case_identifier"
                           }
                         ]
                       }
@@ -1125,16 +1125,28 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "snake_case_identifier"
+          "type": "PREC",
+          "value": 3,
+          "content": {
+            "type": "SYMBOL",
+            "name": "snake_case_identifier"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "all_caps_identifier"
+          "type": "PREC",
+          "value": 2,
+          "content": {
+            "type": "SYMBOL",
+            "name": "all_caps_identifier"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "camel_case_identifier"
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "pascal_case_identifier"
+          }
         }
       ]
     },
@@ -1146,7 +1158,7 @@
       "type": "PATTERN",
       "value": "[A-Z_][A-Z0-9_]+"
     },
-    "camel_case_identifier": {
+    "pascal_case_identifier": {
       "type": "PATTERN",
       "value": "[A-Z_][a-zA-Z0-9_]+"
     },
@@ -2069,7 +2081,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "camel_case_identifier"
+            "name": "pascal_case_identifier"
           }
         },
         {
@@ -2369,7 +2381,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "camel_case_identifier"
+          "name": "pascal_case_identifier"
         },
         {
           "type": "REPEAT",
@@ -2382,7 +2394,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "camel_case_identifier"
+                "name": "pascal_case_identifier"
               }
             ]
           }
@@ -2394,7 +2406,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "camel_case_identifier"
+          "name": "pascal_case_identifier"
         },
         {
           "type": "REPEAT",
@@ -2407,7 +2419,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "camel_case_identifier"
+                "name": "pascal_case_identifier"
               }
             ]
           }
@@ -2422,7 +2434,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "camel_case_identifier"
+          "name": "pascal_case_identifier"
         },
         {
           "type": "REPEAT",
@@ -2435,7 +2447,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "camel_case_identifier"
+                "name": "pascal_case_identifier"
               }
             ]
           }
@@ -2469,7 +2481,7 @@
             "name": "name",
             "content": {
               "type": "SYMBOL",
-              "name": "camel_case_identifier"
+              "name": "pascal_case_identifier"
             }
           },
           {
@@ -2499,7 +2511,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "camel_case_identifier"
+            "name": "pascal_case_identifier"
           }
         }
       ]
