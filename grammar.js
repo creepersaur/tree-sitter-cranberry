@@ -131,7 +131,7 @@ export default grammar({
 			word('const'),
 			choice(
 				prec(5, seq(
-					$.identifier,
+					field('name', $.identifier),
 					':',
 					field('type', choice(
 						$.builtin_type,
@@ -139,18 +139,18 @@ export default grammar({
 					)),
 				)),
 				seq(
-					$.identifier,
+					field('name', $.identifier),
 					repeat(seq(
 						',',
-						$.identifier,
+						field('name', $.identifier),
 					))
 				),
 				seq(
 					'(',
-					$.identifier,
+					field('name', $.identifier),
 					repeat(seq(
 						',',
-						$.identifier,
+						field('name', $.identifier),
 					)),
 					')'
 				)
@@ -165,18 +165,18 @@ export default grammar({
 			word('let'),
 			choice(
 				seq(
-					$.identifier,
+					field('name', $.identifier),
 					repeat(seq(
 						',',
-						$.identifier,
+						field('name', $.identifier),
 					))
 				),
 				seq(
 					'(',
-					$.identifier,
+					field('name', $.identifier),
 					repeat(seq(
 						',',
-						$.identifier,
+						field('name', $.identifier),
 					)),
 					')'
 				)
@@ -318,7 +318,7 @@ export default grammar({
 
 		// FUNCTIONS
 
-		function_declaration: $ => prec(2, seq(
+		function_declaration: $ => prec.left(2, seq(
 			word('fn'),
 			field('name', $.snake_case_identifier),
 			'(',
