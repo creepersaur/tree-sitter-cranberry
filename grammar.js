@@ -97,7 +97,7 @@ export default grammar({
 			word('let'),
 			choice(
 				prec(5, seq(
-					$.identifier,
+					field('name', $.identifier),
 					':',
 					field('type', choice(
 						$.builtin_type,
@@ -105,18 +105,18 @@ export default grammar({
 					)),
 				)),
 				seq(
-					$.identifier,
+					field('name', $.identifier),
 					repeat(seq(
 						',',
-						$.identifier,
+						field('name', $.identifier),
 					))
 				),
 				seq(
 					'(',
-					$.identifier,
+					field('name', $.identifier),
 					repeat(seq(
 						',',
-						$.identifier,
+						field('name', $.identifier),
 					)),
 					')'
 				)
@@ -324,7 +324,7 @@ export default grammar({
 			'(',
 			field('parameters', optional($.parameter_list)),
 			')',
-			$.any_block
+			optional($.any_block)
 		)),
 
 		parameter_list: $ => seq(
