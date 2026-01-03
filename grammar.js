@@ -328,8 +328,8 @@ export default grammar({
 		)),
 
 		parameter_list: $ => seq(
-			$.identifier,
-			repeat(seq(',', $.identifier)),
+			field("param", $.identifier),
+			repeat(seq(',', field("param", $.identifier))),
 			optional(',')  // trailing comma
 		),
 
