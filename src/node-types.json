@@ -876,6 +876,26 @@
     "type": "class_definition",
     "named": true,
     "fields": {
+      "constructor": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "constructor",
+            "named": true
+          }
+        ]
+      },
+      "method": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_declaration",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -891,14 +911,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "constructor",
-          "named": true
-        },
-        {
-          "type": "function_declaration",
-          "named": true
-        },
         {
           "type": "let_expression",
           "named": true
