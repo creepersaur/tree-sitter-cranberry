@@ -2,7 +2,7 @@ export default grammar({
 	name: "cranberry",
 
 	conflicts: $ => [
-		[$.decorator_statement]
+		[$.decorator_statement],
 	],
 
 	rules: {
@@ -93,7 +93,7 @@ export default grammar({
 			prec.left(-1, seq($._expression, '||', $._expression)),
 		)),
 
-		let_statement: $ => prec.right(1, seq(
+		let_statement: $ => prec.right(5, seq(
 			word('let'),
 			choice(
 				prec(5, seq(
@@ -104,11 +104,28 @@ export default grammar({
 						$.pascal_case_identifier
 					)),
 				)),
-				seq(
+				prec(5, seq(
 					field('name', $.identifier),
 					repeat(seq(
 						',',
 						field('name', $.identifier),
+					))
+				)),
+				seq(
+					field('name', $.identifier),
+					':',
+					field('type', choice(
+						$.builtin_type,
+						$.pascal_case_identifier
+					)),
+					repeat(seq(
+						',',
+						field('name', $.identifier),
+						':',
+						field('type', choice(
+							$.builtin_type,
+							$.pascal_case_identifier
+						))
 					))
 				),
 				seq(
@@ -132,17 +149,33 @@ export default grammar({
 			choice(
 				prec(5, seq(
 					field('name', $.identifier),
-					':',
-					field('type', choice(
-						$.builtin_type,
-						$.pascal_case_identifier
+					optional(seq(
+						':',
+						field('type', choice(
+							$.builtin_type,
+							$.pascal_case_identifier
+						))
 					)),
 				)),
 				seq(
 					field('name', $.identifier),
+					optional(seq(
+						':',
+						field('type', choice(
+							$.builtin_type,
+							$.pascal_case_identifier
+						))
+					)),
 					repeat(seq(
 						',',
 						field('name', $.identifier),
+						optional(seq(
+							':',
+							field('type', choice(
+								$.builtin_type,
+								$.pascal_case_identifier
+							))
+						)),
 					))
 				),
 				seq(

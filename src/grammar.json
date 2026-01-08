@@ -493,7 +493,7 @@
     },
     "let_statement": {
       "type": "PREC_RIGHT",
-      "value": 1,
+      "value": 5,
       "content": {
         "type": "SEQ",
         "members": [
@@ -551,6 +551,43 @@
                 }
               },
               {
+                "type": "PREC",
+                "value": 5,
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "name",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "identifier"
+                      }
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": ","
+                          },
+                          {
+                            "type": "FIELD",
+                            "name": "name",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "identifier"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
                 "type": "SEQ",
                 "members": [
                   {
@@ -559,6 +596,27 @@
                     "content": {
                       "type": "SYMBOL",
                       "name": "identifier"
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ":"
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "type",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "builtin_type"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "pascal_case_identifier"
+                        }
+                      ]
                     }
                   },
                   {
@@ -576,6 +634,27 @@
                           "content": {
                             "type": "SYMBOL",
                             "name": "identifier"
+                          }
+                        },
+                        {
+                          "type": "STRING",
+                          "value": ":"
+                        },
+                        {
+                          "type": "FIELD",
+                          "name": "type",
+                          "content": {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SYMBOL",
+                                "name": "builtin_type"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "pascal_case_identifier"
+                              }
+                            ]
                           }
                         }
                       ]
@@ -690,25 +769,38 @@
                       }
                     },
                     {
-                      "type": "STRING",
-                      "value": ":"
-                    },
-                    {
-                      "type": "FIELD",
-                      "name": "type",
-                      "content": {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "builtin_type"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "pascal_case_identifier"
-                          }
-                        ]
-                      }
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": ":"
+                            },
+                            {
+                              "type": "FIELD",
+                              "name": "type",
+                              "content": {
+                                "type": "CHOICE",
+                                "members": [
+                                  {
+                                    "type": "SYMBOL",
+                                    "name": "builtin_type"
+                                  },
+                                  {
+                                    "type": "SYMBOL",
+                                    "name": "pascal_case_identifier"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -723,6 +815,40 @@
                       "type": "SYMBOL",
                       "name": "identifier"
                     }
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": ":"
+                          },
+                          {
+                            "type": "FIELD",
+                            "name": "type",
+                            "content": {
+                              "type": "CHOICE",
+                              "members": [
+                                {
+                                  "type": "SYMBOL",
+                                  "name": "builtin_type"
+                                },
+                                {
+                                  "type": "SYMBOL",
+                                  "name": "pascal_case_identifier"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
                   },
                   {
                     "type": "REPEAT",
@@ -740,6 +866,40 @@
                             "type": "SYMBOL",
                             "name": "identifier"
                           }
+                        },
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SEQ",
+                              "members": [
+                                {
+                                  "type": "STRING",
+                                  "value": ":"
+                                },
+                                {
+                                  "type": "FIELD",
+                                  "name": "type",
+                                  "content": {
+                                    "type": "CHOICE",
+                                    "members": [
+                                      {
+                                        "type": "SYMBOL",
+                                        "name": "builtin_type"
+                                      },
+                                      {
+                                        "type": "SYMBOL",
+                                        "name": "pascal_case_identifier"
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "BLANK"
+                            }
+                          ]
                         }
                       ]
                     }
