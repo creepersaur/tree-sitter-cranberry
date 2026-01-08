@@ -716,11 +716,39 @@
                     "value": "="
                   },
                   {
-                    "type": "FIELD",
-                    "name": "value",
+                    "type": "PREC",
+                    "value": 5,
                     "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
+                      "type": "FIELD",
+                      "name": "value",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    }
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": ","
+                        },
+                        {
+                          "type": "PREC",
+                          "value": 5,
+                          "content": {
+                            "type": "FIELD",
+                            "name": "value",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "_expression"
+                            }
+                          }
+                        }
+                      ]
                     }
                   }
                 ]
@@ -960,11 +988,39 @@
                     "value": "="
                   },
                   {
-                    "type": "FIELD",
-                    "name": "value",
+                    "type": "PREC",
+                    "value": 5,
                     "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
+                      "type": "FIELD",
+                      "name": "value",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    }
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": ","
+                        },
+                        {
+                          "type": "PREC",
+                          "value": 5,
+                          "content": {
+                            "type": "FIELD",
+                            "name": "value",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "_expression"
+                            }
+                          }
+                        }
+                      ]
                     }
                   }
                 ]
@@ -979,7 +1035,7 @@
     },
     "let_expression": {
       "type": "PREC_RIGHT",
-      "value": 0,
+      "value": 2,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1085,11 +1141,39 @@
                     "value": "="
                   },
                   {
-                    "type": "FIELD",
-                    "name": "value",
+                    "type": "PREC",
+                    "value": 5,
                     "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
+                      "type": "FIELD",
+                      "name": "value",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    }
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": ","
+                        },
+                        {
+                          "type": "PREC",
+                          "value": 5,
+                          "content": {
+                            "type": "FIELD",
+                            "name": "value",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "_expression"
+                            }
+                          }
+                        }
+                      ]
                     }
                   }
                 ]
@@ -1179,7 +1263,7 @@
     },
     "member_expression": {
       "type": "PREC",
-      "value": 5,
+      "value": 3,
       "content": {
         "type": "SEQ",
         "members": [

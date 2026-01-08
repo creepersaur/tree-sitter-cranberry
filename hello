@@ -1,1 +1,1 @@
-const x: number, y: number
+let x,y  = 20, 30

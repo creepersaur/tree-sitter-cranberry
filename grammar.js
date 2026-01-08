@@ -140,7 +140,11 @@ export default grammar({
 			),
 			optional(seq(
 				'=',
-				field('value', $._expression)
+				prec(5, field('value', $._expression)),
+				repeat(seq(
+					',',
+					prec(5, field('value', $._expression)),
+				)),
 			))
 		)),
 
@@ -190,11 +194,15 @@ export default grammar({
 			),
 			optional(seq(
 				'=',
-				field('value', $._expression)
+				prec(5, field('value', $._expression)),
+				repeat(seq(
+					',',
+					prec(5, field('value', $._expression)),
+				)),
 			))
 		)),
 
-		let_expression: $ => prec.right(0, seq(
+		let_expression: $ => prec.right(2, seq(
 			word('let'),
 			choice(
 				seq(
@@ -216,7 +224,11 @@ export default grammar({
 			),
 			optional(seq(
 				'=',
-				field('value', $._expression)
+				prec(5, field('value', $._expression)),
+				repeat(seq(
+					',',
+					prec(5, field('value', $._expression)),
+				)),
 			))
 		)),
 
@@ -234,7 +246,7 @@ export default grammar({
 			')'
 		)),
 
-		member_expression: $ => prec(5, seq(
+		member_expression: $ => prec(3, seq(
 			field('object', $._expression),
 			$.DOT,
 			field('member', choice($.identifier, $.call_expression))
