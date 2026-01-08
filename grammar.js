@@ -519,7 +519,7 @@ export default grammar({
 
 		// LITERALS
 
-		formatted_string: $ => seq(
+		formatted_string: $ => prec.right(seq(
 			word('$'),
 			choice(
 				seq(
@@ -529,7 +529,7 @@ export default grammar({
 						$.interpolated_string_content_double,
 						$.interpolation
 					)),
-					word('"')
+					optional(word('"'))
 				),
 				seq(
 					word("'"),
@@ -538,7 +538,7 @@ export default grammar({
 						$.interpolated_string_content_single,
 						$.interpolation
 					)),
-					word("'")
+					optional(word("'"))
 				),
 				seq(
 					word('`'),
@@ -547,10 +547,10 @@ export default grammar({
 						$.interpolated_string_content_backtick,
 						$.interpolation
 					)),
-					word('`')
+					optional(word('`'))
 				)
 			)
-		),
+		)),
 
 		interpolation: $ => seq(
 			'{',
@@ -558,23 +558,23 @@ export default grammar({
 			'}'
 		),
 
-		string: $ => choice(
+		string: $ => prec.right(choice(
 			seq(
 				'"',
 				repeat(choice($.escape_sequence, $.string_content_double)),
-				'"'
+				optional('"')
 			),
 			seq(
 				"'",
 				repeat(choice($.escape_sequence, $.string_content_single)),
-				"'"
+				optional("'")
 			),
 			seq(
 				'`',
 				repeat(choice($.escape_sequence, $.string_content_backtick)),
-				'`'
+				optional('`')
 			)
-		),
+		)),
 
 		string_content_double: _ => token.immediate(/[^"\\\n]+/),
 		string_content_single: _ => token.immediate(/[^'\\\n]+/),
