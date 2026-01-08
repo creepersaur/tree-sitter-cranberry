@@ -2113,7 +2113,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "let_expression"
+                        "name": "let_statement"
                       }
                     ]
                   }
@@ -2141,7 +2141,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "let_expression"
+                        "name": "let_statement"
                       }
                     ]
                   }
@@ -2163,7 +2163,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "let_expression"
+                    "name": "let_statement"
                   }
                 ]
               }

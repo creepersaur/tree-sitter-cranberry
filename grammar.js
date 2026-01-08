@@ -441,19 +441,19 @@ export default grammar({
 				seq(
 					repeat(choice(
 						field("method", $.function_declaration),
-						$.let_expression,
+						$.let_statement,
 					)),
 
 					field("constructor", $.constructor),
 
 					repeat(choice(
 						field("method", $.function_declaration),
-						$.let_expression,
+						$.let_statement,
 					)),
 				),
 				repeat(choice(
 					field("method", $.function_declaration),
-					$.let_expression,
+					$.let_statement,
 				)),
 			),
 

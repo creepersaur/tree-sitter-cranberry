@@ -912,7 +912,7 @@
       "required": false,
       "types": [
         {
-          "type": "let_expression",
+          "type": "let_statement",
           "named": true
         }
       ]
